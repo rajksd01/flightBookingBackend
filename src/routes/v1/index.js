@@ -1,5 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const { aeroplaneController } = require("../../controllers");
+const aeroplanesRoutes = require("./aeroplane-routes");
 
-router.get("/");
+router.use("/aeroplanes", aeroplanesRoutes);
+
+module.exports = router;
