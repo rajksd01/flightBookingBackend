@@ -1,12 +1,17 @@
 const { StatusCodes } = require("http-status-codes");
-const { errorResponse, error } = require("../utils/common/error-response");
+const { ErrorResponse } = require("../utils/common");
+const AppError = require("../utils/errors/app-errors");
 
-const validAeroplaneInput = (req, res, next) => {
+function validateCreateRequest(req, res, next) {
   if (!req.body.modelNumber) {
-    errorResponse.message = "ModelNumber is required ";
-    return res.status(StatusCodes.BAD_REQUEST).json(errorResponse);
+    ErrorResponse.message = "Something went wrong while creating an aeroplane ";
+    ErrorResponse.error = new AppError([
+      "Model Number not found ",
+      StatusCodes.BAD_REQUEST,
+    ]);
+    return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
   }
   next();
-};
+}
 
-module.exports = validAeroplaneInput;
+module.exports = {validateCreateRequest};

@@ -1,8 +1,8 @@
-const errorResponse = {
+const error = {
   success: false,
   message: "Request completion faled",
   data: {},
   error: {},
 };
 
-module.exports = errorResponse;
+module.exports = error;
