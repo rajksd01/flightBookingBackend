@@ -1,12 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const { CityController } = require("../../controllers");
+const { CityMiddleware } = require("../../middlewares");
 
 /*  
 route - api/v1/cities/city 
 to create a new City
 */
-router.post("/city", CityController.createCity);
+router.post(
+  "/city",
+  CityMiddleware.validateCreateRequest,
+  CityController.createCity
+);
 
 /*  
   route - api/v1/Citys/City 
