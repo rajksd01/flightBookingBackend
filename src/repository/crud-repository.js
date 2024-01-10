@@ -1,4 +1,6 @@
-const { logConfig } = require("../config");
+const { StatusCodes } = require("http-status-codes");
+const AppError = require("../utils/errors/app-errors");
+const { updateAeroplane } = require("../services/aeroplane-services");
 
 class CrudRepository {
   constructor(model) {
@@ -10,59 +12,37 @@ class CrudRepository {
     return response;
   }
 
-  async destroy(data) {
-    try {
-      const response = await this.model.destroy({
-        where: {
-          id: data,
-        },
-      });
-      return response;
-    } catch (error) {
-      Logger.error(
-        "Something went wrong  in the crud repository: destroy function"
-      );
-      throw error;
+  async destroy(id) {
+    const response = await this.model.destroy({
+      where: {
+        id: id,
+      },
+    });
+    if (!response) {
+      throw new AppError("Aeroplane Doesn't exist", StatusCodes.NOT_FOUND);
     }
+    return response;
   }
 
   async get(data) {
-    try {
-      const response = await this.model.findByPk(data);
-      return response;
-    } catch (error) {
-      Logger.error(
-        "Something went wrong  in the crud repository: get function"
-      );
-      throw error;
+    const response = await this.model.findByPk(data);
+    if (!response) {
+      throw new AppError("Not Found", StatusCodes.NOT_FOUND);
     }
+    return response;
   }
   async getAll() {
-    try {
-      const response = await this.model.findAll();
-      return response;
-    } catch (error) {
-      Logger.error(
-        "Something went wrong  in the crud repository: getAll function"
-      );
-      throw error;
-    }
+    const response = await this.model.findAll();
+    return response;
   }
 
   async update(id, data) {
-    try {
-      const response = await this.model.update(data, {
-        where: {
-          id: id,
-        },
-      });
-      return response;
-    } catch (error) {
-      Logger.error(
-        "Something went wrong  in the crud repository: update function"
-      );
-      throw error;
+    const response = await this.model.update(data, { where: { id: id } });
+    if (response[0] == 0) {
+      throw new AppError(" Not Found", StatusCodes.NOT_FOUND);
     }
+
+    return response;
   }
 }
 
