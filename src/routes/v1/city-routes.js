@@ -14,7 +14,7 @@ router.post(
 );
 
 /*  
-  route - api/v1/Citys/City 
+  route - api/v1/Cities/City  
   to delete an City
   */
 router.delete("/city/:id", CityController.deleteCity);
