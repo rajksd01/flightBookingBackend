@@ -9,6 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.hasOne(models.Airport, {
+        foreignKey: "cityId",
+      });
     }
   }
   City.init(
