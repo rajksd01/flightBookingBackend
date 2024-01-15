@@ -12,8 +12,7 @@ module.exports = {
         table: "Cities",
         field: "id",
       },
-      onDelete: "cascade",
-      onUpdate: "cascade",
+      onDelete: "CASCADE",
     });
   },
 
@@ -21,6 +20,3 @@ module.exports = {
     await queryInterface.removeConstraint("Airports", "city_fkey_constraint_");
   },
 };
-
-
-   
