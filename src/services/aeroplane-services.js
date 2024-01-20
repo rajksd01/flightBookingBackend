@@ -50,9 +50,9 @@ async function getAeroplane(data) {
     );
   }
 }
-function getAllAeroplane() {
+async function getAllAeroplane() {
   try {
-    const aeroplanes = aeroplaneRepository.getAll();
+    const aeroplanes = await  aeroplaneRepository.getAll();
     return aeroplanes;
   } catch (error) {
     throw new AppError(
