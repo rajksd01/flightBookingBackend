@@ -12,5 +12,14 @@ router.post(
   FlightMiddlewares.validateCreateRequest,
   FlightController.createFlight
 );
+/*  
+route - api/v1/flights/flight
+to fetch all aeroplanes
+*/
+router.get(
+  "/flight",
+
+  FlightController.getAllFlight
+);
 
 module.exports = router;
