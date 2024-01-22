@@ -14,9 +14,11 @@ module.exports = (sequelize, DataTypes) => {
       });
 
       this.belongsTo(models.Airport, {
+        as: "departureAirport",
         foreignKey: "departureAirportId",
       });
       this.belongsTo(models.Airport, {
+        as: "arrivalAirport",
         foreignKey: "arrivalAirportId",
       });
     }
@@ -26,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       flightNumber: { type: DataTypes.STRING, allowNull: false },
       aeroplaneId: { type: DataTypes.INTEGER, allowNull: false },
       departureAirportId: { type: DataTypes.STRING, allowNull: false },
-      arrivalAirportId: { type: DataTypes.STRING , allowNull: false },
+      arrivalAirportId: { type: DataTypes.STRING, allowNull: false },
       arrivalTime: { type: DataTypes.DATE, allowNull: false },
       departureTime: { type: DataTypes.DATE, allowNull: false },
       price: { type: DataTypes.INTEGER, allowNull: false },
