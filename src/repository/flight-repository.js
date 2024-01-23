@@ -20,7 +20,7 @@ class FlightRepository extends CrudRepository {
           model: Airport,
           required: true,
           as: "departureAirport",
-          on: {
+          on: { 
             col1: Sequelize.where(
               Sequelize.col("Flight.departureAirportId"),
               "=",
