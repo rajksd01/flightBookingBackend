@@ -12,13 +12,16 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models.Aeroplane, {
-        foreignKey: aeroplaneId,
+        foreignKey: "aeroplaneId",
       });
     }
   }
   Seat.init(
     {
-      aeroplaneId: { type: DataTypes.INTEGER, allowNull: false },
+      aeroplaneId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
       row: { type: DataTypes.INTEGER, allowNull: false },
       col: { type: DataTypes.STRING, allowNull: false },
       type: {

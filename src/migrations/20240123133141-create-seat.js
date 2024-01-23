@@ -1,5 +1,6 @@
 "use strict";
 /** @type {import('sequelize-cli').Migration} */
+
 const { Enums } = require("../utils/common");
 const { BUSINESS, PREMIUM_ECONOMY, ECONOMY, FIRST_CLASS } = Enums.SEATS_TYPE;
 module.exports = {
@@ -14,6 +15,10 @@ module.exports = {
       aeroplaneId: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: "Aeroplanes",
+          key: "id",
+        },
       },
       row: {
         type: Sequelize.INTEGER,
