@@ -5,7 +5,7 @@ const { FlightMiddlewares } = require("../../middlewares");
 
 /*  
 route - api/v1/flights/flight
-to create a new aeroplane
+to create a new flight
 */
 router.post(
   "/flight",
@@ -14,12 +14,22 @@ router.post(
 );
 /*  
 route - api/v1/flights/flight
-to fetch all aeroplanes
+to fetch all flights
 */
 router.get(
   "/flight",
 
   FlightController.getAllFlight
+);
+
+/*  
+route - api/v1/flights/flight/:id
+to fetch a flight
+*/
+router.get(
+  "/flight/:id",
+
+  FlightController.getFlight
 );
 
 module.exports = router;

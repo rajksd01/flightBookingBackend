@@ -80,7 +80,23 @@ async function getAllFlight(query) {
   }
 }
 
+async function getFlight(id) {
+  try {
+    const flight = await flightRepository.get(id);
+
+    flight.statusCode = StatusCodes.OK;
+    return flight;
+  } catch (error) {
+    throw new AppError(
+      `Cannot find flight with the given ${id}`,
+
+      StatusCodes.NOT_FOUND
+    );
+  }
+}
+
 module.exports = {
   createFlight,
   getAllFlight,
+  getFlight
 };
