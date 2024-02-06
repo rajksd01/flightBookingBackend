@@ -20,7 +20,7 @@ class FlightRepository extends CrudRepository {
           model: Airport,
           required: true,
           as: "departureAirport",
-          on: { 
+          on: {
             col1: Sequelize.where(
               Sequelize.col("Flight.departureAirportId"),
               "=",
@@ -45,6 +45,18 @@ class FlightRepository extends CrudRepository {
       ],
     });
     return response;
+  }
+
+  async updateRemainingSeats(flightId, seats, dec = true) {
+    const flight = await Flight.findByPk(flightId);
+
+    if (dec && flight) {
+      const response = await flight.decrement("totalSeats", { by: seats });
+      return response;
+    } else {
+      const response = await flight.increment("totalSeats", { by: seats });
+      return response;
+    }
   }
 }
 
