@@ -8,6 +8,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", apiRoutes);
+app.use("/flightservices", apiRoutes);
 
 app.listen(serverConfig.PORT, async () => {
   console.log("listening on port " + serverConfig.PORT);
